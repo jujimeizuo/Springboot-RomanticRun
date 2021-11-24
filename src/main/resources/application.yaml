@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: RomanticRun
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/romanticrun?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #Spring Boot \u9ED8\u8BA4\u662F\u4E0D\u6CE8\u5165\u8FD9\u4E9B\u5C5E\u6027\u503C\u7684\uFF0C\u9700\u8981\u81EA\u5DF1\u7ED1\u5B9A
+    #druid \u6570\u636E\u6E90\u4E13\u6709\u914D\u7F6E
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #\u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters\uFF0Cstat:\u76D1\u63A7\u7EDF\u8BA1\u3001log4j\uFF1A\u65E5\u5FD7\u8BB0\u5F55\u3001wall\uFF1A\u9632\u5FA1sql\u6CE8\u5165
+    #\u5982\u679C\u5141\u8BB8\u65F6\u62A5\u9519  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #\u5219\u5BFC\u5165 log4j \u4F9D\u8D56\u5373\u53EF\uFF0CMaven \u5730\u5740\uFF1A https://mvnrepository.com/artifact/log4j/log4j
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
