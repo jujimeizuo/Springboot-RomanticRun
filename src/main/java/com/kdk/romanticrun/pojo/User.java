@@ -14,6 +14,7 @@ public class User {
      * register_time : 注册时间
      * id            : 用户在数据库的id
      */
+
     private String username;
     private String password;
     private String uid;
