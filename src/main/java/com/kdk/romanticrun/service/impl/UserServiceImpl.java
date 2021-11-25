@@ -1,6 +1,7 @@
 package com.kdk.romanticrun.service.impl;
 
 import com.kdk.romanticrun.mapper.UserMapper;
+import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.User;
 import com.kdk.romanticrun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserMsgMapper userMsgMapper;
+
+    @Override
     public String registerUser(User user) {
 
         // 检测该用户是否已存在
@@ -34,11 +39,16 @@ public class UserServiceImpl implements UserService {
 
             user1.setUid(UUID.randomUUID().toString());      // 设置uid
             userMapper.registerUser(user1);
+
+            userMsgMapper.insertUid(user1.getUid());
+            userMsgMapper.insertUserNameByUid(user1.getUid(), user1.getUsername());
+
             return user.getUsername() + "用户创建成功";
 
         }
     }
 
+    @Override
     public String verifyUser(User user) {
         if(userMapper.isExistUser(user.getUsername()) == null) return "用户名错误";
         else if(userMapper.verifyUser(user) == null) return "密码错误";

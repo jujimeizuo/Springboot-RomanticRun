@@ -3,30 +3,58 @@ package com.kdk.romanticrun.mapper;
 import com.kdk.romanticrun.pojo.UserMsg;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Date;
 
 @Repository
 public interface UserMsgMapper {
 
-    // TODO: 注册之后立即设置，头像、个性签名（1、稍后设置， 2、立即设置
     /**
-     * 设置 sex， birth， username
+     * 插入 uid
      * @param uid
-     * @return
      */
-    String setUserMsgByUid(String uid) ;
+    void insertUid(String uid) ;
+
+    /**
+     * 通过 uid 插入用户昵称，注册时直接调用
+     * @param uid
+     */
+    void insertUserNameByUid(String uid, String username) ;
+
+    /**
+     * 通过 uid 插入用户电话
+     * @param uid
+     */
+    void insertPhoneByUid(String uid, String phone) ;
+
+    /**
+     * 通过 uid 插入用户地址
+     * @param uid
+     */
+    void insertAddressByUid(String uid, String address) ;
 
     /**
      * 通过 uid 插入用户头像 base64
      * @param uid
      */
-    void insertAvatorByUid(String uid) ;
+    void insertAvatorByUid(String uid, String avator) ;
+
+    /**
+     * 通过 uid 插入用户性别
+     * @param uid
+     */
+    void insertSexByUid(String uid, String sex) ;
+
+    /**
+     * 通过 uid 插入生日日期
+     * @param uid
+     */
+    void insertBirthByUid(String uid, Date birth) ;
 
     /**
      * 通过 uid 设置用户个性签名
      * @param uid
      */
-    void insertSigNatureByUid(String uid) ;
+    void insertSigNatureByUid(String uid, String sigNature) ;
 
 
     /**
@@ -50,12 +78,4 @@ public interface UserMsgMapper {
      * @return
      */
     float queryRomanticRunTotalMilesByUid(String uid) ;
-
-    //TODO：该资源可存储在前端，可存储在后端
-    /**
-     * 通过 uid 查询该用户勋章编号列表
-     * @param uid
-     * @return
-     */
-    List<Integer> queryMedalByUid(String uid) ;
 }
