@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kdk.romanticrun.mapper.UserMsgMapper">
+
+    <insert id="insertUidAndUserName" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        insert into usermsg (uid, username) value(#{uid}, #{username})
+    </insert>
+
+    <update id="insertPhoneByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (phone)=#{phone} where (uid)=#{uid}
+    </update>
+
+    <update id="insertAddressByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (address)=#{address} where (uid)=#{uid}
+    </update>
+
+    <update id="insertAvatorByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (avator)=#{avator} where (uid)=#{uid}
+    </update>
+
+    <update id="insertSexByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (sex)=#{sex} where (uid)=#{uid}
+    </update>
+
+    <update id="insertBirthByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (birth)=#{birth} where (uid)=#{uid}
+    </update>
+
+    <update id="insertSigNatureByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (signature)#{sigNature} where(uid)=#{uid}
+    </update>
+
+    <select id="queryTotalUserMsgByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        select * from usermsg where (uid)=#{uid}
+    </select>
+
+    <update id="updateFreeRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (freeruntotalmiles)=#{FreeRunTotalMiles} where (uid)=#{uid}
+    </update>
+
+    <select id="queryFreeRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        select freeruntotalmiles from usermsg where (uid)=#{uid}
+    </select>
+
+    <update id="updateRomanticRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set (romanticruntotalmiles)=#{RomanticRunTotalMiles} where (uid)=#{uid}
+    </update>
+
+    <select id="queryRomanticRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        select romanticruntotalmiles from usermsg where (uid)=#{uid}
+    </select>
+
+
+</mapper>
+
+
