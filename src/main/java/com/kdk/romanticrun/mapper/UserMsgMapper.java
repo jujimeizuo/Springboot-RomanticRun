@@ -62,9 +62,8 @@ public interface UserMsgMapper {
      * 通过 uid 更新 FreeRunTotalMiles
      * @param uid
      * @param FreeRunTotalMiles
-     * @return
      */
-    float updateFreeRunTotalMilesByUid(String uid, float FreeRunTotalMiles) ;
+    void updateFreeRunTotalMilesByUid(String uid, float FreeRunTotalMiles) ;
 
 
     /**
@@ -79,9 +78,8 @@ public interface UserMsgMapper {
      * 通过 uid 更新 RomanticRunTotalMiles
      * @param uid
      * @param RomanticRunTotalMiles
-     * @return
      */
-    float updateRomanticRunTotalMilesByUid(String uid, float RomanticRunTotalMiles) ;
+    void updateRomanticRunTotalMilesByUid(String uid, float RomanticRunTotalMiles) ;
 
     /**
      * 通过 uid 查询总漫跑里程
@@ -90,3 +88,5 @@ public interface UserMsgMapper {
      */
     float queryRomanticRunTotalMilesByUid(String uid) ;
 }
+
+

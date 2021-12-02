@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService {
             userMapper.registerUser(user1);
 
             userMsgMapper.insertUidAndUserName(user1.getUid(), user1.getUsername());
-
+            userMsgMapper.updateRomanticRunTotalMilesByUid(user1.getUid(), 0);
+            userMsgMapper.updateFreeRunTotalMilesByUid(user1.getUid(), 0);
             return user.getUsername() + "用户创建成功";
 
         }

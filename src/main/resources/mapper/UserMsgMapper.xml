@@ -8,46 +8,46 @@
     </insert>
 
     <update id="insertPhoneByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (phone)=#{phone} where (uid)=#{uid}
+        update usermsg set phone=#{phone} where uid=#{uid}
     </update>
 
     <update id="insertAddressByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (address)=#{address} where (uid)=#{uid}
+        update usermsg set address=#{address} where uid=#{uid}
     </update>
 
     <update id="insertAvatorByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (avator)=#{avator} where (uid)=#{uid}
+        update usermsg set avator=#{avator} where uid=#{uid}
     </update>
 
     <update id="insertSexByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (sex)=#{sex} where (uid)=#{uid}
+        update usermsg set sex=#{sex} where uid=#{uid}
     </update>
 
     <update id="insertBirthByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (birth)=#{birth} where (uid)=#{uid}
+        update usermsg set birth=#{birth} where uid=#{uid}
     </update>
 
     <update id="insertSigNatureByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (signature)#{sigNature} where(uid)=#{uid}
+        update usermsg set signature#{sigNature} where uid=#{uid}
     </update>
 
-    <select id="queryTotalUserMsgByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+    <select id="queryTotalUserMsgByUid" resultType="com.kdk.romanticrun.pojo.UserMsg">
         select * from usermsg where (uid)=#{uid}
     </select>
 
     <update id="updateFreeRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (freeruntotalmiles)=#{FreeRunTotalMiles} where (uid)=#{uid}
+        update usermsg set freeruntotalmiles=#{FreeRunTotalMiles} where uid=#{uid}
     </update>
 
-    <select id="queryFreeRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+    <select id="queryFreeRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg" resultType="float">
         select freeruntotalmiles from usermsg where (uid)=#{uid}
     </select>
 
     <update id="updateRomanticRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set (romanticruntotalmiles)=#{RomanticRunTotalMiles} where (uid)=#{uid}
+        update usermsg set romanticruntotalmiles=#{RomanticRunTotalMiles} where uid=#{uid}
     </update>
 
-    <select id="queryRomanticRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+    <select id="queryRomanticRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg" resultType="float">
         select romanticruntotalmiles from usermsg where (uid)=#{uid}
     </select>
 

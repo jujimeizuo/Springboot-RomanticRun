@@ -51,5 +51,17 @@ class RomanticRunApplicationTests {
         userMsgMapper.insertUidAndUserName(userMsg.getUid(), userMsg.getUsername());
     }
 
+    @Test
+    void test4() {
+        UserMsg userMsg = new UserMsg();
+        userMsg.setUid("4cca7e11-31a1-443a-8b6c-dae396b87ce3");
+        userMsg.setAvatar("11421");
+        //userMsgMapper.insertAvatorByUid(userMsg.getUid(), userMsg.getAvatar());
+        userMsg.setTotalFreeRunMiles(0);
+        userMsgMapper.updateFreeRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalFreeRunMiles());
+        userMsg.setTotalRomanticRunMiles(0);
+        userMsgMapper.updateRomanticRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalRomanticRunMiles());
+        userMsg.setTotalMiles(0);
 
+    }
 }

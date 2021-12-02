@@ -7,10 +7,7 @@ import com.kdk.romanticrun.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -58,7 +55,7 @@ public class UserMsgController {
         userMsgService.insertSigNatureByUid(uid, sigNature);
     }
 
-    @GetMapping(value = "/{uid}/queryTotalUserMsgByUid")
+    @PostMapping(value = "/{uid}/queryTotalUserMsgByUid")
     public UserMsg queryTotalUserMsgByUid(@PathVariable String uid) throws JsonProcessingException {
         UserMsg userMsg = userMsgService.queryTotalUserMsgByUid(uid);
         log.info(uid + "的总信息为: " + JsonUtil.objectToString(userMsg));
@@ -66,13 +63,12 @@ public class UserMsgController {
     }
 
     @GetMapping(value = "/{uid}/updateFreeRunTotalMilesByUid")
-    public float updateFreeRunTotalMilesByUid(@PathVariable String uid, @RequestParam float FreeRunTotalMiles) {
-        float ans = userMsgService.updateFreeRunTotalMilesByUid(uid, FreeRunTotalMiles);
-        log.info(uid + "的自由跑总里程是: " + ans);
-        return ans;
+    public void updateFreeRunTotalMilesByUid(@PathVariable String uid, @RequestParam float FreeRunTotalMiles) {
+        userMsgService.updateFreeRunTotalMilesByUid(uid, FreeRunTotalMiles);
+        log.info(uid + "增加自由跑里程: " + FreeRunTotalMiles);
     }
 
-    @GetMapping(value = "/{uid}/queryFreeRunTotalMilesByUid")
+    @PostMapping(value = "/{uid}/queryFreeRunTotalMilesByUid")
     public float queryFreeRunTotalMilesByUid(@PathVariable String uid) {
         float ans = userMsgService.queryFreeRunTotalMilesByUid(uid);
         log.info(uid + "的自由跑总里程: " + ans);
@@ -80,13 +76,12 @@ public class UserMsgController {
     }
 
     @GetMapping(value = "/{uid}/updateRomanticRunTotalMilesByUid")
-    public float updateRomanticRunTotalMilesByUid(@PathVariable String uid, @RequestParam float RomanticRunTotalMiles) {
-        float ans = userMsgService.updateRomanticRunTotalMilesByUid(uid, RomanticRunTotalMiles);
-        log.info(uid + "的漫跑总里程是: " + ans);
-        return ans;
+    public void updateRomanticRunTotalMilesByUid(@PathVariable String uid, @RequestParam float RomanticRunTotalMiles) {
+        userMsgService.updateRomanticRunTotalMilesByUid(uid, RomanticRunTotalMiles);
+        log.info(uid + "增加漫跑里程: " + RomanticRunTotalMiles);
     }
 
-    @GetMapping(value = "/{uid}/queryRomanticRunTotalMilesByUid")
+    @PostMapping(value = "/{uid}/queryRomanticRunTotalMilesByUid")
     public float queryRomanticRunTotalMilesByUid(@PathVariable String uid) {
         float ans = userMsgService.queryRomanticRunTotalMilesByUid(uid);
         log.info(uid + "的漫跑总里程: " + ans);

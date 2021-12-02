@@ -21,11 +21,11 @@ public interface UserMsgService {
 
     UserMsg queryTotalUserMsgByUid(String uid) ;
 
-    float updateFreeRunTotalMilesByUid(String uid, float FreeRunTotalMiles) ;
+    void updateFreeRunTotalMilesByUid(String uid, float FreeRunTotalMiles) ;
 
     float queryFreeRunTotalMilesByUid(String uid) ;
 
-    float updateRomanticRunTotalMilesByUid(String uid, float RomanticRunTotalMiles) ;
+    void updateRomanticRunTotalMilesByUid(String uid, float RomanticRunTotalMiles) ;
 
     float queryRomanticRunTotalMilesByUid(String uid) ;
 
