@@ -3,9 +3,13 @@ package com.kdk.romanticrun.service.impl;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.UserMsgService;
+import com.kdk.romanticrun.util.CastUtil;
+import com.kdk.romanticrun.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +18,9 @@ public class UserMsgServiceImpl implements UserMsgService {
 
     @Autowired
     private UserMsgMapper userMsgMapper;
-//
-//    @Autowired
-//    private RedisUtil redisUtil;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
 
 
@@ -66,17 +70,13 @@ public class UserMsgServiceImpl implements UserMsgService {
     }
 
     // TODO: redis缓存
-//    public List<Integer> queryMedalsByUid(String uid) {
-//        if(redisUtil.lGetListSize(uid) == 0) {
-//            return null;
-//        }
-//        else {
-//            List<Object> temp = redisUtil.lGet(uid, 0, -1);
-//            List<Integer> medals = null;
-//            for (Object o : temp) {
-//                medals.add((Integer) o);
-//            }
-//            return medals;
-//        }
-//    }
+    public List<Integer> queryMedalsByUid(String uid) {
+        List<Object> temp = redisUtil.lGet(uid, 0, -1);
+        assert temp != null;
+        List<Integer> list = new ArrayList<Integer>();
+        for (Object o : temp) {
+            list.add(CastUtil.castInt(o));
+        }
+        return list;
+    }
 }

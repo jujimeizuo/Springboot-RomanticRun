@@ -4,10 +4,13 @@ import com.kdk.romanticrun.mapper.UserMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.User;
 import com.kdk.romanticrun.pojo.UserMsg;
+import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 class RomanticRunApplicationTests {
@@ -17,6 +20,9 @@ class RomanticRunApplicationTests {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserMsgService userMsgService;
 
     @Autowired
      private UserMsgMapper userMsgMapper;
@@ -63,5 +69,11 @@ class RomanticRunApplicationTests {
         userMsgMapper.updateRomanticRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalRomanticRunMiles());
         userMsg.setTotalMiles(0);
 
+    }
+
+    @Test
+    void test5() {
+        List<Integer> list = userMsgService.queryMedalsByUid("4cca7e11-31a1-443a-8b6c-dae396b87ce3");
+        System.out.println(list);
     }
 }

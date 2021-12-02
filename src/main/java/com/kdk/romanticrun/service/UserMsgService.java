@@ -29,5 +29,5 @@ public interface UserMsgService {
 
     float queryRomanticRunTotalMilesByUid(String uid) ;
 
-//    List<Integer> queryMedalsByUid(String uid) ;
+    List<Integer> queryMedalsByUid(String uid) ;
 }

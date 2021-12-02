@@ -15,7 +15,7 @@ public class FreeRun {
      * AverageSpeed：平均跑步时间
      */
 
-    private String username;
+    private String uid;
     private float totalMile;
     private Date runStartTime;
     private Date runEndTime;
