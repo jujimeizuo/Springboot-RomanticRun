@@ -12,6 +12,7 @@ public class FreeRun {
      * totalMile：   总里程数
      * runStartTime：跑步开始时间
      * runEndTime：  跑步结束时间
+     * runTime:      跑步日期
      * AverageSpeed：平均跑步时间
      */
 

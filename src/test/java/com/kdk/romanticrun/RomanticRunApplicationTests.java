@@ -1,15 +1,20 @@
 package com.kdk.romanticrun;
 
+import com.kdk.romanticrun.mapper.FreeRunMapper;
 import com.kdk.romanticrun.mapper.UserMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
+import com.kdk.romanticrun.pojo.FreeRun;
 import com.kdk.romanticrun.pojo.User;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.UserService;
+import com.kdk.romanticrun.util.DateUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @SpringBootTest
@@ -75,5 +80,47 @@ class RomanticRunApplicationTests {
     void test5() {
         List<Integer> list = userMsgService.queryMedalsByUid("4cca7e11-31a1-443a-8b6c-dae396b87ce3");
         System.out.println(list);
+    }
+
+    @Autowired
+    private FreeRunMapper freeRunMapper;
+
+    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+
+    @Test
+    void test6() throws ParseException {
+        FreeRun freeRun = new FreeRun();
+        freeRun.setUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
+        freeRun.setRunTime(sdf1.parse("2021-12-15"));
+        freeRun.setRunStartTime(sdf2.parse("2021-12-15 11:05:07"));
+        freeRun.setRunEndTime(sdf2.parse("2021-12-15 12:37:05"));
+        freeRun.setTotalMile((float) 123.1);
+        freeRun.setAverageSpeed((float) 6.7);
+        freeRunMapper.insertUserFreeRun(freeRun);
+    }
+
+    @Test
+    void test7() throws ParseException {
+        FreeRun freeRun = new FreeRun();
+        freeRun.setUid("4cca7e11-31a1-443a-8b6c-dae396b87ce3");
+        freeRun.setRunTime(sdf1.parse("2021-12-5"));
+        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
+        for (FreeRun run : freeRuns) {
+            System.out.println(run);
+        }
+    }
+
+    @Test
+    void test8() {
+        FreeRun freeRun = new FreeRun();
+        freeRun.setUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
+        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUidForMonth(freeRun.getUid());
+        for (FreeRun run : freeRuns) {
+            System.out.println(run);
+        }
+
     }
 }

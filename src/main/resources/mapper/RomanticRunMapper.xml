@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kdk.romanticrun.mapper.RomanticRunMapper">
+
+
+    <insert id="insertUserRomanticRun" parameterType="com.kdk.romanticrun.pojo.RomanticRun">
+        insert into romanticrun (uid, totalmile, runstarttime, runendtime, runtime, averagespeed) values (#{uid}, #{totalMile}, #{runStartTime}, #{runEndTime}, #{runTime}, #{averageSpeed})
+    </insert>
+
+    <select id="queryRomanticRunByUid" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+        select * from romanticrun where uid=#{uid}
+    </select>
+
+    <select id="queryRomanticRunByUidForDay" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+        select * from romanticrun where uid=#{uid} AND to_days(now()) = to_days(runtime)
+    </select>
+
+    <select id="queryRomanticRunByUidForWeek" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+        select * from romanticrun where uid=#{uid} AND to_days(now()) - to_days(runtime) &lt;= 7 AND to_days(now()) - to_days(runtime) >= 0
+    </select>
+
+    <select id="queryRomanticRunByUidForMonth" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+        select * from romanticrun where uid=#{uid} AND to_days(now()) - to_days(runtime) &lt;= 30 AND to_days(now()) - to_days(runtime) >= 0
+    </select>
+
+</mapper>
+
+
