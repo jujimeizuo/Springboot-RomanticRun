@@ -25,17 +25,17 @@ public interface RomanticRunMapper {
      * 日榜
      * @return
      */
-    List<RomanticRun> queryRomanticRunByUidForDay() ;
+    List<RomanticRun> queryRomanticRunForDay() ;
 
     /**
      * 周榜
      * @return
      */
-    List<RomanticRun> queryRomanticRunByUidForWeek() ;
+    List<RomanticRun> queryRomanticRunForWeek() ;
 
     /**
      * 月榜
      * @return
      */
-    List<RomanticRun> queryRomanticRunByUidForMonth() ;
+    List<RomanticRun> queryRomanticRunForMonth() ;
 }

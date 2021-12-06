@@ -12,15 +12,15 @@
         select * from romanticrun where uid=#{uid}
     </select>
 
-    <select id="queryRomanticRunByUidForDay" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunForDay" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where to_days(now()) = to_days(rundate)
     </select>
 
-    <select id="queryRomanticRunByUidForWeek" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunForWeek" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where to_days(now()) - to_days(rundate) &lt;= 7 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
-    <select id="queryRomanticRunByUidForMonth" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunForMonth" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where to_days(now()) - to_days(rundate) &lt;= 30 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 

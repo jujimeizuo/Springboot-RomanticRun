@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class RomanticRun {
+public class RomanticRun implements Comparable<RomanticRun> {
 
     /**
      * uid：         用户uid
@@ -18,4 +18,11 @@ public class RomanticRun {
     private float totalMile;
     private Date runTime;
     private Date runDate;
+
+    @Override
+    public int compareTo(RomanticRun romanticRun) {
+        Date date1 = this.getRunDate();
+        Date date2 = romanticRun.getRunDate();
+        return (int) ((date1.getTime() - date2.getTime()) / 1000);
+    }
 }

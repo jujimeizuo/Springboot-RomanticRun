@@ -113,7 +113,7 @@ class RomanticRunApplicationTests {
     @Test
     void test8() {
         FreeRun freeRun = new FreeRun();
-        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUidForMonth();
+        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunForMonth();
         for (FreeRun run : freeRuns) {
             System.out.println(run);
         }

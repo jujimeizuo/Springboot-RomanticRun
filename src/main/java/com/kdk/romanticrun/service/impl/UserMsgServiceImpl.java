@@ -69,7 +69,10 @@ public class UserMsgServiceImpl implements UserMsgService {
         return userMsgMapper.queryRomanticRunTotalMilesByUid(uid);
     }
 
-    // TODO: redis缓存
+    public void insertMedalByUid(String uid, Integer medal) {
+        redisUtil.lSet(uid, medal);
+    }
+
     public List<Integer> queryMedalsByUid(String uid) {
         List<Object> temp = redisUtil.lGet(uid, 0, -1);
         assert temp != null;

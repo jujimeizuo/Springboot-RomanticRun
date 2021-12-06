@@ -25,17 +25,17 @@ public interface FreeRunMapper {
      * 日榜
      * @return
      */
-    List<FreeRun> queryFreeRunByUidForDay() ;
+    List<FreeRun> queryFreeRunForDay() ;
 
     /**
      * 周榜
      * @return
      */
-    List<FreeRun> queryFreeRunByUidForWeek() ;
+    List<FreeRun> queryFreeRunForWeek() ;
 
     /**
      * 月榜
      * @return
      */
-    List<FreeRun> queryFreeRunByUidForMonth() ;
+    List<FreeRun> queryFreeRunForMonth() ;
 }

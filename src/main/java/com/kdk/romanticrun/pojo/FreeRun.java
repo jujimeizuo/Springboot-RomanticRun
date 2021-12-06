@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class FreeRun {
+public class FreeRun implements Comparable<FreeRun> {
 
     /**
      * uid：         用户uid
@@ -18,5 +18,13 @@ public class FreeRun {
     private float totalMile;
     private Date runTime;
     private Date runDate;
+
+
+    @Override
+    public int compareTo(FreeRun freeRun) {
+        Date date1 = this.getRunDate();
+        Date date2 = freeRun.getRunDate();
+        return (int) ((date1.getTime() - date2.getTime()) / 1000);
+    }
 
 }

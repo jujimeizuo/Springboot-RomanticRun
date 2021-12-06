@@ -29,5 +29,7 @@ public interface UserMsgService {
 
     float queryRomanticRunTotalMilesByUid(String uid) ;
 
+    void insertMedalByUid(String uid, Integer medal) ;
+
     List<Integer> queryMedalsByUid(String uid) ;
 }
