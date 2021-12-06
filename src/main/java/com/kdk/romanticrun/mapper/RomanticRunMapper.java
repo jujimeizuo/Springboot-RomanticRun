@@ -22,23 +22,20 @@ public interface RomanticRunMapper {
     List<RomanticRun> queryRomanticRunByUid(String uid) ;
 
     /**
-     * 根据 uid 查询day自由跑数据
-     * @param uid
+     * 日榜
      * @return
      */
-    List<RomanticRun> queryRomanticRunByUidForDay(String uid) ;
+    List<RomanticRun> queryRomanticRunByUidForDay() ;
 
     /**
-     * 根据 uid 查询week自由跑数据
-     * @param uid
+     * 周榜
      * @return
      */
-    List<RomanticRun> queryRomanticRunByUidForWeek(String uid) ;
+    List<RomanticRun> queryRomanticRunByUidForWeek() ;
 
     /**
-     * 根据 uid 查询month自由跑数据
-     * @param uid
+     * 月榜
      * @return
      */
-    List<RomanticRun> queryRomanticRunByUidForMonth(String uid) ;
+    List<RomanticRun> queryRomanticRunByUidForMonth() ;
 }

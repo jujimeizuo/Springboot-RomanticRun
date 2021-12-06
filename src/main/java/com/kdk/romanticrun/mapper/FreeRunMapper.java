@@ -22,23 +22,20 @@ public interface FreeRunMapper {
     List<FreeRun> queryFreeRunByUid(String uid) ;
 
     /**
-     * 根据 uid 查询day自由跑数据
-     * @param uid
+     * 日榜
      * @return
      */
-    List<FreeRun> queryFreeRunByUidForDay(String uid) ;
+    List<FreeRun> queryFreeRunByUidForDay() ;
 
     /**
-     * 根据 uid 查询week自由跑数据
-     * @param uid
+     * 周榜
      * @return
      */
-    List<FreeRun> queryFreeRunByUidForWeek(String uid) ;
+    List<FreeRun> queryFreeRunByUidForWeek() ;
 
     /**
-     * 根据 uid 查询month自由跑数据
-     * @param uid
+     * 月榜
      * @return
      */
-    List<FreeRun> queryFreeRunByUidForMonth(String uid) ;
+    List<FreeRun> queryFreeRunByUidForMonth() ;
 }

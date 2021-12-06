@@ -5,7 +5,7 @@
 
 
     <insert id="insertUserRomanticRun" parameterType="com.kdk.romanticrun.pojo.RomanticRun">
-        insert into romanticrun (uid, totalmile, runstarttime, runendtime, runtime, averagespeed) values (#{uid}, #{totalMile}, #{runStartTime}, #{runEndTime}, #{runTime}, #{averageSpeed})
+        insert into freerun (uid, totalmile, rundate, runtime) values (#{uid}, #{totalMile}, #{runDate}, #{runTime})
     </insert>
 
     <select id="queryRomanticRunByUid" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
@@ -13,15 +13,15 @@
     </select>
 
     <select id="queryRomanticRunByUidForDay" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
-        select * from romanticrun where uid=#{uid} AND to_days(now()) = to_days(runtime)
+        select * from romanticrun where to_days(now()) = to_days(rundate)
     </select>
 
     <select id="queryRomanticRunByUidForWeek" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
-        select * from romanticrun where uid=#{uid} AND to_days(now()) - to_days(runtime) &lt;= 7 AND to_days(now()) - to_days(runtime) >= 0
+        select * from romanticrun where to_days(now()) - to_days(rundate) &lt;= 7 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
     <select id="queryRomanticRunByUidForMonth" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
-        select * from romanticrun where uid=#{uid} AND to_days(now()) - to_days(runtime) &lt;= 30 AND to_days(now()) - to_days(runtime) >= 0
+        select * from romanticrun where to_days(now()) - to_days(rundate) &lt;= 30 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
 </mapper>

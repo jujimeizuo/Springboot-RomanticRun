@@ -95,10 +95,7 @@ class RomanticRunApplicationTests {
         FreeRun freeRun = new FreeRun();
         freeRun.setUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
         freeRun.setRunTime(sdf1.parse("2021-12-15"));
-        freeRun.setRunStartTime(sdf2.parse("2021-12-15 11:05:07"));
-        freeRun.setRunEndTime(sdf2.parse("2021-12-15 12:37:05"));
         freeRun.setTotalMile((float) 123.1);
-        freeRun.setAverageSpeed((float) 6.7);
         freeRunMapper.insertUserFreeRun(freeRun);
     }
 
@@ -116,8 +113,7 @@ class RomanticRunApplicationTests {
     @Test
     void test8() {
         FreeRun freeRun = new FreeRun();
-        freeRun.setUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
-        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUidForMonth(freeRun.getUid());
+        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUidForMonth();
         for (FreeRun run : freeRuns) {
             System.out.println(run);
         }
