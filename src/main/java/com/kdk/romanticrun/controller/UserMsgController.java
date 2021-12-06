@@ -88,8 +88,13 @@ public class UserMsgController {
         return ans;
     }
 
+    @GetMapping(value = "/{uid}/insertMedalByUid")
+    public void insertMedalByUid(@PathVariable String uid, @RequestParam Integer medal) {
+        userMsgService.insertMedalByUid(uid, medal);
+    }
+
     @GetMapping(value = "/{uid}/queryMedalsByUid")
-    List<Integer> queryMedalsByUid(String uid) throws JsonProcessingException {
+    List<Integer> queryMedalsByUid(@PathVariable String uid) throws JsonProcessingException {
         List<Integer> list = userMsgService.queryMedalsByUid(uid);
         log.info(uid + "的总徽章有: " + JsonUtil.objectToString(list));
         return list;

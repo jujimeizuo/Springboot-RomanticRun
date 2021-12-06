@@ -54,7 +54,8 @@ public class UserMsgServiceImpl implements UserMsgService {
     }
 
     public void updateFreeRunTotalMilesByUid(String uid, float FreeRunTotalMiles) {
-        userMsgMapper.updateFreeRunTotalMilesByUid(uid, FreeRunTotalMiles);
+        float ans = userMsgMapper.queryFreeRunTotalMilesByUid(uid);
+        userMsgMapper.updateFreeRunTotalMilesByUid(uid, ans + FreeRunTotalMiles);
     }
 
     public float queryFreeRunTotalMilesByUid(String uid) {
@@ -62,7 +63,8 @@ public class UserMsgServiceImpl implements UserMsgService {
     }
 
     public void updateRomanticRunTotalMilesByUid(String uid, float RomanticRunTotalMiles) {
-        userMsgMapper.updateRomanticRunTotalMilesByUid(uid, RomanticRunTotalMiles);
+        float ans = userMsgMapper.queryRomanticRunTotalMilesByUid(uid);
+        userMsgMapper.updateRomanticRunTotalMilesByUid(uid, ans + RomanticRunTotalMiles);
     }
 
     public float queryRomanticRunTotalMilesByUid(String uid) {

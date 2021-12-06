@@ -16,6 +16,6 @@ public class RunMsgVO implements Comparable<RunMsgVO> {
     public int compareTo(RunMsgVO o) {
         float total1 = this.getTotalMile();
         float total2 = o.getTotalMile();
-        return (int) (total1 - total2);
+        return (int) (total1 - total2) * 100;
     }
 }
