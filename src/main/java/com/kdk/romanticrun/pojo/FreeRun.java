@@ -16,7 +16,7 @@ public class FreeRun implements Comparable<FreeRun> {
 
     private String uid;
     private float totalMile;
-    private Date runTime;
+    private String runTime;
     private Date runDate;
 
 

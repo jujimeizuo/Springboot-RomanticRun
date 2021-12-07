@@ -52,6 +52,6 @@ public class UserServiceImpl implements UserService {
     public String verifyUser(User user) {
         if(userMapper.isExistUser(user.getUsername()) == null) return "用户名错误";
         else if(userMapper.verifyUser(user) == null) return "密码错误";
-        else return "success";
+        else return user.getUid();
     }
 }

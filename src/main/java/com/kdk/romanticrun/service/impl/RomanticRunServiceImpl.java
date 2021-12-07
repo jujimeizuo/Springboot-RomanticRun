@@ -5,6 +5,7 @@ import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.RomanticRun;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.RomanticRunService;
+import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.vo.RunMsgVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,18 @@ public class RomanticRunServiceImpl implements RomanticRunService {
     private RomanticRunMapper romanticRunMapper;
 
     @Autowired
+    private UserMsgService userMsgService;
+
+    @Autowired
     private UserMsgMapper userMsgMapper;
 
-    public void insertUserRomanticRun(RomanticRun romanticRun) {
+    public void insertUserRomanticRun(String uid, float totalMile, String runTime) {
+        RomanticRun romanticRun = new RomanticRun();
+        romanticRun.setUid(uid);
+        romanticRun.setTotalMile(totalMile);
+        romanticRun.setRunTime(runTime);
+        romanticRun.setRunDate(new Date());
+        userMsgService.updateRomanticRunTotalMilesByUid(uid, totalMile);
         romanticRunMapper.insertUserRomanticRun(romanticRun);
     }
 
@@ -51,6 +61,7 @@ public class RomanticRunServiceImpl implements RomanticRunService {
         HashMap<String, List<RunMsgVO>> stringListHashMap = new HashMap<>();
         for (RomanticRun romanticRun : romanticRuns) {
             List<RunMsgVO> tempList = stringListHashMap.get(romanticRun.getUid());
+            if(tempList == null) tempList = new ArrayList<>();
             RunMsgVO runMsgVO = new RunMsgVO();
             UserMsg userMsg = userMsgMapper.queryTotalUserMsgByUid(romanticRun.getUid());
             runMsgVO.setUsername(userMsg.getUsername() == null ? userMsg.getUid() : userMsg.getUsername());

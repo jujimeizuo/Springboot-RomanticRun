@@ -5,7 +5,7 @@
 
 
     <insert id="insertUserRomanticRun" parameterType="com.kdk.romanticrun.pojo.RomanticRun">
-        insert into freerun (uid, totalmile, rundate, runtime) values (#{uid}, #{totalMile}, #{runDate}, #{runTime})
+        insert into romanticrun (uid, totalmile, rundate, runtime) values (#{uid}, #{totalMile}, #{runDate}, #{runTime})
     </insert>
 
     <select id="queryRomanticRunByUid" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">

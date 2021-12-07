@@ -16,7 +16,7 @@ public class RomanticRun implements Comparable<RomanticRun> {
 
     private String uid;
     private float totalMile;
-    private Date runTime;
+    private String runTime;
     private Date runDate;
 
     @Override

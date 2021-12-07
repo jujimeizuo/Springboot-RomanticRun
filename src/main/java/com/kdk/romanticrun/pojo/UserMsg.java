@@ -17,7 +17,6 @@ public class UserMsg {
      * sex:        用户性别
      * birth:      生日
      * sigNature:  个性签名
-     * totalMiles: 用户跑的总路程
      * totalFreeRunMiles: 用户总自由跑里程
      * totalRomanticRunMiles: 用户总漫跑里程
      * rank:       跑步段位
@@ -31,10 +30,8 @@ public class UserMsg {
     private String sex;
     private Date birth;
     private String sigNature;
-    private float totalMiles;
     private float totalFreeRunMiles;
     private float totalRomanticRunMiles;
     private Integer rank;
     private List<Integer> medals;
-
 }

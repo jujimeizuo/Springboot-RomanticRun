@@ -6,6 +6,7 @@ import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.FreeRun;
 import com.kdk.romanticrun.pojo.User;
 import com.kdk.romanticrun.pojo.UserMsg;
+import com.kdk.romanticrun.service.FreeRunService;
 import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.UserService;
 import com.kdk.romanticrun.util.DateUtil;
@@ -72,7 +73,6 @@ class RomanticRunApplicationTests {
         userMsgMapper.updateFreeRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalFreeRunMiles());
         userMsg.setTotalRomanticRunMiles(0);
         userMsgMapper.updateRomanticRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalRomanticRunMiles());
-        userMsg.setTotalMiles(0);
 
     }
 
@@ -94,7 +94,7 @@ class RomanticRunApplicationTests {
     void test6() throws ParseException {
         FreeRun freeRun = new FreeRun();
         freeRun.setUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
-        freeRun.setRunTime(sdf1.parse("2021-12-15"));
+        freeRun.setRunTime("2021-12-15");
         freeRun.setTotalMile((float) 123.1);
         freeRunMapper.insertUserFreeRun(freeRun);
     }
@@ -103,7 +103,7 @@ class RomanticRunApplicationTests {
     void test7() throws ParseException {
         FreeRun freeRun = new FreeRun();
         freeRun.setUid("4cca7e11-31a1-443a-8b6c-dae396b87ce3");
-        freeRun.setRunTime(sdf1.parse("2021-12-5"));
+        freeRun.setRunTime("2021-12-5");
         List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUid("4c1a7e11-31a1-443a-8b6c-da396b87ce3");
         for (FreeRun run : freeRuns) {
             System.out.println(run);
@@ -119,4 +119,14 @@ class RomanticRunApplicationTests {
         }
 
     }
+
+
+    @Autowired
+    private FreeRunService freeRunService;
+
+    @Test
+    void test9() {
+        freeRunService.insertUserFreeRun("4cca7e11-31a1-443a-8b6c-dae396b87ce3", (float) 5, ("2021-12-5"));
+    }
+
 }

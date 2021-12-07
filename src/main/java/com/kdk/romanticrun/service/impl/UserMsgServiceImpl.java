@@ -23,8 +23,6 @@ public class UserMsgServiceImpl implements UserMsgService {
     private RedisUtil redisUtil;
 
 
-
-
     public void insertPhoneByUid(String uid, String phone) {
         userMsgMapper.insertPhoneByUid(uid, phone);
     }

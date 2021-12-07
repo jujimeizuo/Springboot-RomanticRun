@@ -1,14 +1,16 @@
 package com.kdk.romanticrun.service.impl;
 
 import com.kdk.romanticrun.mapper.FreeRunMapper;
-import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.FreeRun;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.FreeRunService;
+import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.vo.RunMsgVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -18,9 +20,16 @@ public class FreeRunServiceImpl implements FreeRunService {
     private FreeRunMapper freeRunMapper;
 
     @Autowired
-    private UserMsgMapper userMsgMapper;
+    private UserMsgService userMsgService;
 
-    public void insertUserFreeRun(FreeRun freeRun) {
+
+    public void insertUserFreeRun(String uid, float totalMile, String runTime) {
+        FreeRun freeRun = new FreeRun();
+        freeRun.setUid(uid);
+        freeRun.setTotalMile(totalMile);
+        freeRun.setRunTime(runTime);
+        userMsgService.updateFreeRunTotalMilesByUid(uid, totalMile);
+        freeRun.setRunDate(new Date());
         freeRunMapper.insertUserFreeRun(freeRun);
     }
 
@@ -51,8 +60,10 @@ public class FreeRunServiceImpl implements FreeRunService {
         HashMap<String, List<RunMsgVO>> stringListHashMap = new HashMap<>();
         for (FreeRun freeRun : freeRuns) {
             List<RunMsgVO> tempList = stringListHashMap.get(freeRun.getUid());
+            if(tempList == null) tempList = new ArrayList<>();
             RunMsgVO runMsgVO = new RunMsgVO();
-            UserMsg userMsg = userMsgMapper.queryTotalUserMsgByUid(freeRun.getUid());
+            UserMsg userMsg = userMsgService.queryTotalUserMsgByUid(freeRun.getUid());
+            // if(userMsg == null) userMsg = new UserMsg();
             runMsgVO.setUsername(userMsg.getUsername() == null ? userMsg.getUid() : userMsg.getUsername());
             runMsgVO.setAvator(userMsg.getAvatar());
             runMsgVO.setTotalMile(freeRun.getTotalMile());

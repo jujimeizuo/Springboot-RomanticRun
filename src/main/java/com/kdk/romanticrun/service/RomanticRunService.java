@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RomanticRunService {
 
-    void insertUserRomanticRun(RomanticRun romanticRun) ;
+    void insertUserRomanticRun(String uid, float totalMile, String runTime) ;
 
     List<RomanticRun> queryRomanticRunByUid(String uid) ;
 
