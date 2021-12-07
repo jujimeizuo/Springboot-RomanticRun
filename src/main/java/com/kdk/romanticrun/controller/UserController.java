@@ -1,15 +1,20 @@
 package com.kdk.romanticrun.controller;
 
 import com.kdk.romanticrun.pojo.User;
+import com.kdk.romanticrun.service.MailService;
 import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.UserService;
+import com.kdk.romanticrun.service.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
 
 @RestController
 @Slf4j
@@ -18,25 +23,35 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    @Autowired
+    private MailService mailService;
+
+    @PostMapping(value = "sendEmail")
+    public String sendEmail(@RequestParam String email) {
+        String msg = mailService.sendMineMail(email);
+        log.info("给" + email + "发送验证码");
+        log.info(msg);
+        return msg;
+    }
 
     @PostMapping(value = "register")
-    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        String msg = userService.registerUser(user);
-        log.info("{username: " + username + ", password: " + password + "}" + msg);
+    public String registerUser(@RequestParam String email,@RequestParam String password,@RequestParam String code) {
+        UserVO userVO = new UserVO();
+        userVO.setEmail(email);
+        userVO.setPassword(password);
+        userVO.setCode(code);
+        String msg = userService.registerUser(userVO);
+        log.info(msg);
         return msg;
     }
 
     @PostMapping(value = "login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
         User user = new User();
-        user.setUsername(username);
+        user.setEmail(email);
         user.setPassword(password);
-        String msg = userService.verifyUser(user);
-        log.info("{username: " + username + ", password: " + password + "}" + msg);
+        String msg = userService.login(user);
+        log.info("msg");
         return msg;
     }
 

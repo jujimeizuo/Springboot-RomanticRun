@@ -6,7 +6,6 @@ import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.util.CastUtil;
 import com.kdk.romanticrun.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +21,9 @@ public class UserMsgServiceImpl implements UserMsgService {
     @Autowired
     private RedisUtil redisUtil;
 
+    public void insertUseNameByUid(String uid, String username) {
+        userMsgMapper.insertUseName(uid, username);
+    }
 
     public void insertPhoneByUid(String uid, String phone) {
         userMsgMapper.insertPhoneByUid(uid, phone);

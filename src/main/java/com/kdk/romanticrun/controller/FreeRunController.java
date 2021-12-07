@@ -22,9 +22,10 @@ public class FreeRunController {
     private FreeRunService freeRunService;
 
     @GetMapping(value = "/{uid}/insertUserFreeRun")
-    public void insertUserFreeRun(@PathVariable String uid, @RequestParam float totalMile, @RequestParam String runTime) throws ParseException {
+    public String insertUserFreeRun(@PathVariable String uid, @RequestParam float totalMile, @RequestParam String runTime) throws ParseException {
         log.info(uid + " 在 " + runTime + " 自由跑了 " + totalMile);
         freeRunService.insertUserFreeRun(uid, totalMile, runTime);
+        return "插入成功";
     }
 
     @GetMapping(value = "/{uid}/queryFreeRunByUid")
@@ -34,7 +35,7 @@ public class FreeRunController {
     }
 
     @GetMapping(value = "queryFreeRunRank")
-    public List<RunMsgVO> queryFreeRunRank(String flag) {
+    public List<RunMsgVO> queryFreeRunRank(@RequestParam String flag) {
         log.info("获取" + flag + "榜");
         return freeRunService.queryFreeRunRank(flag);
     }

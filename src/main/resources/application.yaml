@@ -42,6 +42,12 @@ spring:
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+  mail:
+    host: smtp.163.com
+    username: ljfengzetao@163.com
+    password: ZONKJNEGMGDPVYET
+    default-encoding: UTF-8
+
   redis:
     host: localhost
     port: 6379

@@ -3,9 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kdk.romanticrun.mapper.UserMsgMapper">
 
-    <insert id="insertUidAndUserName" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        insert into usermsg (uid, username) value(#{uid}, #{username})
+    <insert id="insertUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        insert into usermsg (uid) value(#{uid})
     </insert>
+
+    <update id="insertUserNameByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
+        update usermsg set username=#{username} where uid=#{uid}
+    </update>
 
     <update id="insertPhoneByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
         update usermsg set phone=#{phone} where uid=#{uid}

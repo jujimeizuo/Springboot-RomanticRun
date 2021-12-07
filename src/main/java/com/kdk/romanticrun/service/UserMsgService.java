@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface UserMsgService {
 
+    void insertUseNameByUid(String uid, String username) ;
+
     void insertPhoneByUid(String uid, String phone) ;
 
     void insertAddressByUid(String uid, String address) ;

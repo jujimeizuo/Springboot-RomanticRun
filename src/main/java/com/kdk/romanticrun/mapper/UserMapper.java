@@ -14,10 +14,10 @@ public interface UserMapper {
 
     /**
      * 检测数据库是否已存在用户名
-     * @param username
+     * @param email
      * @return
      */
-    User isExistUser(String username) ;
+    User isExistUser(String email) ;
 
     /**
      * 验证用户是否存在

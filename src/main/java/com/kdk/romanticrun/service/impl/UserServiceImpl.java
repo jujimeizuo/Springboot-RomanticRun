@@ -3,7 +3,10 @@ package com.kdk.romanticrun.service.impl;
 import com.kdk.romanticrun.mapper.UserMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.User;
+import com.kdk.romanticrun.service.MailService;
 import com.kdk.romanticrun.service.UserService;
+import com.kdk.romanticrun.service.vo.UserVO;
+import com.kdk.romanticrun.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,38 +23,40 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMsgMapper userMsgMapper;
 
+    @Autowired
+    private MailService mailService;
+
     @Override
-    public String registerUser(User user) {
+    public String registerUser(UserVO userVO) {
 
-        // 检测该用户是否已存在
-        if(userMapper.isExistUser(user.getUsername()) != null) {
-            return "该用户已存在";
-        }
-        else {
-            User user1 = new User();
+        // 验证Code
+        if(!mailService.verityCode(userVO)) return "验证码错误" ;
 
-            user1.setUsername(user.getUsername());           // 设置用户名
-            user1.setPassword(user.getPassword());           // 设置密码
+        User user1 = new User();
+        user1.setEmail(userVO.getEmail());
+        user1.setPassword(MD5Util.MD5(userVO.getPassword()));
 
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-            String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-            user1.setRegister_time(date); // 获取当前时间
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+        user1.setRegister_time(date); // 获取当前时间
+        user1.setUid(UUID.randomUUID().toString());      // 设置uid
+        userMapper.registerUser(user1);
 
-            user1.setUid(UUID.randomUUID().toString());      // 设置uid
-            userMapper.registerUser(user1);
+        userMsgMapper.insertUid(user1.getUid());
 
-            userMsgMapper.insertUidAndUserName(user1.getUid(), user1.getUsername());
-            userMsgMapper.updateRomanticRunTotalMilesByUid(user1.getUid(), 0);
-            userMsgMapper.updateFreeRunTotalMilesByUid(user1.getUid(), 0);
-            return user.getUsername() + "用户创建成功";
+        userMsgMapper.updateRomanticRunTotalMilesByUid(user1.getUid(), 0);
+        userMsgMapper.updateFreeRunTotalMilesByUid(user1.getUid(), 0);
+        return user1.getUid();
 
-        }
     }
 
     @Override
-    public String verifyUser(User user) {
-        if(userMapper.isExistUser(user.getUsername()) == null) return "用户名错误";
-        else if(userMapper.verifyUser(user) == null) return "密码错误";
+    public String login(User user) {
+        User user1 = new User();
+        user1.setEmail(user.getEmail());
+        user1.setPassword(MD5Util.MD5(user.getPassword()));
+        if(userMapper.isExistUser(user.getEmail()) == null) return "邮箱不存在";
+        else if(userMapper.verifyUser(user1) == null) return "密码错误";
         else return user.getUid();
     }
 }

@@ -10,9 +10,15 @@ public interface UserMsgMapper {
 
     /**
      * @param uid
+     */
+    void insertUid(String uid) ;
+
+    /**
+     * 通过 uid 插入用户昵称
+     * @param uid
      * @param username
      */
-    void insertUidAndUserName(String uid, String username) ;
+    void insertUseName(String uid, String username) ;
 
     /**
      * 通过 uid 插入用户电话

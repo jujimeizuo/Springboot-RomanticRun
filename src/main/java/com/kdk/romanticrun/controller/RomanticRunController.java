@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -21,9 +20,10 @@ public class RomanticRunController {
     private RomanticRunService romanticRunService;
 
     @GetMapping(value = "/{uid}/insertUserRomanticRun")
-    public void insertUserRomanticRun(@PathVariable String uid, @RequestParam float totalMile, @RequestParam String runTime) {
+    public String insertUserRomanticRun(@PathVariable String uid, @RequestParam float totalMile, @RequestParam String runTime) {
         log.info(uid + " 在 " + runTime + " 漫跑跑了 " + totalMile);
         romanticRunService.insertUserRomanticRun(uid, totalMile, runTime);
+        return "插入成功";
     }
 
     @GetMapping(value = "/{uid}/queryRomanticRunByUid")

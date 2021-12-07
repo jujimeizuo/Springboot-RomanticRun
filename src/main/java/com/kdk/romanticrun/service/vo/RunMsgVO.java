@@ -2,7 +2,6 @@ package com.kdk.romanticrun.service.vo;
 
 import lombok.Data;
 
-import java.util.Date;
 
 @Data
 public class RunMsgVO implements Comparable<RunMsgVO> {

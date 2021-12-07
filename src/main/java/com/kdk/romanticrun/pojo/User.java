@@ -8,18 +8,15 @@ import java.util.Date;
 public class User {
 
     /**
-     * username      : 账号
+     * email         : 邮箱
      * password      : 密码
      * uid           : 用户唯一id
      * register_time : 注册时间
-     * id            : 用户在数据库的id
      */
 
-    private String username;
+    private String email;
     private String password;
     private String uid;
     private String register_time;
-    private int    id;
-
 
 }

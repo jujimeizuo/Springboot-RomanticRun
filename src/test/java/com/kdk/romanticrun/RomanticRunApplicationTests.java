@@ -4,9 +4,11 @@ import com.kdk.romanticrun.mapper.FreeRunMapper;
 import com.kdk.romanticrun.mapper.UserMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.FreeRun;
+import com.kdk.romanticrun.pojo.RomanticRun;
 import com.kdk.romanticrun.pojo.User;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.FreeRunService;
+import com.kdk.romanticrun.service.RomanticRunService;
 import com.kdk.romanticrun.service.UserMsgService;
 import com.kdk.romanticrun.service.UserService;
 import com.kdk.romanticrun.util.DateUtil;
@@ -16,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -39,20 +42,12 @@ class RomanticRunApplicationTests {
 
     @Test
     void test1() {
-        User user = new User();
-        user.setUsername("r");
-        user.setPassword("123456");
-        System.out.println(userService.registerUser(user));
+
     }
 
     @Test
     void test2() {
-        User user = new User();
-        user.setUid("121");
-        user.setRegister_time("123");
-        user.setUsername("root");
-        user.setPassword("123456");
-        User msg = userMapper.isExistUser(user.getUsername());
+
     }
 
     @Test
@@ -60,7 +55,6 @@ class RomanticRunApplicationTests {
         UserMsg userMsg = new UserMsg();
         userMsg.setUsername("123");
         userMsg.setUid("123");
-        userMsgMapper.insertUidAndUserName(userMsg.getUid(), userMsg.getUsername());
     }
 
     @Test
@@ -129,4 +123,15 @@ class RomanticRunApplicationTests {
         freeRunService.insertUserFreeRun("4cca7e11-31a1-443a-8b6c-dae396b87ce3", (float) 5, ("2021-12-5"));
     }
 
+    @Autowired
+    private RomanticRunService romanticRunService;
+
+    @Test
+    void test10() {
+        RomanticRun romanticRun = new RomanticRun();
+        romanticRun.setUid("4cca7e11-31a1-443a-8b6c-dae396b87ce3");
+        romanticRun.setRunTime("13:12:11");
+        romanticRun.setTotalMile((float) 1.7);
+        romanticRunService.insertUserRomanticRun(romanticRun.getUid(), romanticRun.getTotalMile(), romanticRun.getRunTime());
+    }
 }
