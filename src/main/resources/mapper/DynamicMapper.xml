@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kdk.romanticrun.mapper.DynamicMapper">
+
+    <insert id="insertDynamic" parameterType="com.kdk.romanticrun.pojo.Dynamic">
+        insert into dynamic (commentnumber, issue, issuetime, username, likenumber) values (#{commentNumber}, #{issue}, #{issueTime}, #{username}, #{likeNumber})
+    </insert>
+
+    <select id="queryDynamic" resultType="com.kdk.romanticrun.pojo.Dynamic">
+        select * from dynamic
+    </select>
+
+</mapper>
+
+
