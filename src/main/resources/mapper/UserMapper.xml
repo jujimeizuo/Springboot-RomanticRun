@@ -6,8 +6,11 @@
     <insert id="registerUser" parameterType="com.kdk.romanticrun.pojo.User">
         insert into user (email, password, register_time, uid) values (#{email}, #{password}, #{register_time}, #{uid})
     </insert>
-
-
+    
+    <select id="queryUidByEmail" parameterType="java.lang.String">
+        select uid from user where email=#{email}
+    </select>
+    
     <select id="isExistUser" resultType="com.kdk.romanticrun.pojo.User">
         select * from user where email=#{email}
     </select>

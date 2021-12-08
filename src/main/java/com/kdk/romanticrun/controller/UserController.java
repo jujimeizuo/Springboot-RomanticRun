@@ -1,5 +1,6 @@
 package com.kdk.romanticrun.controller;
 
+import com.kdk.romanticrun.pojo.Result;
 import com.kdk.romanticrun.pojo.User;
 import com.kdk.romanticrun.service.MailService;
 import com.kdk.romanticrun.service.UserMsgService;
@@ -24,15 +25,32 @@ public class UserController {
     private MailService mailService;
 
     @PostMapping(value = "sendEmail")
-    public String sendEmail(@RequestParam String email) {
-        String msg = mailService.sendMineMail(email);
+    public String sendEmail(@RequestParam String email, @RequestParam boolean flag) {
+        String msg = mailService.sendMineMail(email, flag);
         log.info("给" + email + "发送验证码");
         log.info(msg);
         return msg;
     }
 
+    @PostMapping(value = "verityCode")
+    public String verityCode(@RequestParam String email, @RequestParam String code) {
+        UserVO userVO = new UserVO();
+        userVO.setEmail(email);
+        userVO.setCode(code);
+        boolean flag = mailService.verityCode(userVO);
+        if(flag) return "success";
+        else return "error";
+    }
+
+    @PostMapping(value = "reRegister")
+    public String reRegister(@RequestParam String email, @RequestParam String password) {
+        String uid = userService.reRegister(email, password);
+        log.info(uid + "更换密码");
+        return uid;
+    }
+
     @PostMapping(value = "register")
-    public String registerUser(@RequestParam String email,@RequestParam String password,@RequestParam String code) {
+    public String register(@RequestParam String email,@RequestParam String password,@RequestParam String code) {
         UserVO userVO = new UserVO();
         userVO.setEmail(email);
         userVO.setPassword(password);
@@ -55,7 +73,7 @@ public class UserController {
     @PostMapping(value = "/{uid}/update")
     public String update(@PathVariable String uid, @RequestParam String password) {
         String newPassword = userService.updateUser(uid, password);
-        log.info(uid + "更换密码：" + password + "->" + newPassword) ;
+        log.info(uid + "更换密码：" + password + "->" + newPassword);
         return newPassword;
     }
 

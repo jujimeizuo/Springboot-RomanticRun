@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Data
 public class Dynamic implements Comparable<Dynamic> {

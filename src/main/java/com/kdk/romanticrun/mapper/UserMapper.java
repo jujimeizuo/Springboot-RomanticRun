@@ -13,6 +13,13 @@ public interface UserMapper {
     void registerUser(User user);
 
     /**
+     * 根据 email 查询 uid
+     * @param email
+     * @return
+     */
+    String queryUidByEmail(String email) ;
+
+    /**
      * 检测数据库是否已存在用户名
      * @param email
      * @return
@@ -38,4 +45,5 @@ public interface UserMapper {
      * @param uid
      */
     void deleteUser(String uid) ;
+
 }

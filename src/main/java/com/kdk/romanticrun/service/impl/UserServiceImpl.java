@@ -58,6 +58,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    public String reRegister(String email, String password) {
+        String uid = userMapper.queryUidByEmail(email);
+        password = MD5Util.MD5(password);
+        userMapper.updateUser(uid, password);
+        return uid;
+    }
+
     public String login(User user) {
         User user1 = new User();
         user1.setEmail(user.getEmail());

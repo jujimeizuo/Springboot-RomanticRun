@@ -5,6 +5,8 @@ import com.kdk.romanticrun.service.vo.UserVO;
 
 public interface UserService{
 
+    String reRegister(String email, String password) ;
+
     String registerUser(UserVO userVO);
 
     String login(User user);
