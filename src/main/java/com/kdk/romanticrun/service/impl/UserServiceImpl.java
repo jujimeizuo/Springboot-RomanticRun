@@ -67,6 +67,12 @@ public class UserServiceImpl implements UserService {
         else return user.getUid();
     }
 
+    public String updateUser(String uid, String password) {
+        password = MD5Util.MD5(password);
+        userMapper.updateUser(uid, password);
+        return password;
+    }
+
     public void deleteUser(String uid) {
         userMapper.deleteUser(uid);
         userMsgMapper.deleteUserMsg(uid);

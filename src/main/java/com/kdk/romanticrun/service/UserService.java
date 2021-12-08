@@ -9,5 +9,7 @@ public interface UserService{
 
     String login(User user);
 
+    String updateUser(String uid, String password) ;
+
     void deleteUser(String uid) ;
 }

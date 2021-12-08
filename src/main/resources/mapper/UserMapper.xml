@@ -16,6 +16,10 @@
         select * from user where username=#{username} AND password=#{password}
     </select>
 
+    <update id="updateUser" parameterType="com.kdk.romanticrun.pojo.User">
+        update user set password=#{password} where uid=#{uid}
+    </update>
+
     <delete id="deleteUser" parameterType="java.lang.String">
         delete from user where uid=#{uid}
     </delete>

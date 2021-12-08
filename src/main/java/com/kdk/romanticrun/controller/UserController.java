@@ -52,9 +52,17 @@ public class UserController {
         return msg;
     }
 
+    @PostMapping(value = "/{uid}/update")
+    public String update(@PathVariable String uid, @RequestParam String password) {
+        String newPassword = userService.updateUser(uid, password);
+        log.info(uid + "更换密码：" + password + "->" + newPassword) ;
+        return newPassword;
+    }
+
     @PostMapping(value = "/{uid}/delete")
     public String delete(@PathVariable String uid) {
         userService.deleteUser(uid);
+        log.info(uid + "用户注销");
         return "注销成功";
     }
 }
