@@ -25,4 +25,17 @@ public interface UserMapper {
      * @return
      */
     User verifyUser(User user) ;
+
+    /**
+     * 根据 uid 更新password
+     * @param uid
+     * @param password
+     */
+    void updateUser(String uid, String password) ;
+
+    /**
+     * 删除 uid 用户
+     * @param uid
+     */
+    void deleteUser(String uid) ;
 }

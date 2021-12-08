@@ -34,4 +34,5 @@ public interface UserMsgService {
     void insertMedalByUid(String uid, Integer medal) ;
 
     List<Integer> queryMedalsByUid(String uid) ;
+
 }

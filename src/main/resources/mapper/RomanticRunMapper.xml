@@ -8,22 +8,25 @@
         insert into romanticrun (uid, totalmile, rundate, runtime) values (#{uid}, #{totalMile}, #{runDate}, #{runTime})
     </insert>
 
-    <select id="queryRomanticRunByUid" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunByUid" parameterType="java.lang.String" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where uid=#{uid}
     </select>
 
-    <select id="queryRomanticRunForDay" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunForDay" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where to_days(now()) = to_days(rundate)
     </select>
 
-    <select id="queryRomanticRunForWeek" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunForWeek" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where to_days(now()) - to_days(rundate) &lt;= 7 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
-    <select id="queryRomanticRunForMonth" parameterType="com.kdk.romanticrun.pojo.RomanticRun" resultType="com.kdk.romanticrun.pojo.RomanticRun">
+    <select id="queryRomanticRunForMonth" resultType="com.kdk.romanticrun.pojo.RomanticRun">
         select * from romanticrun where to_days(now()) - to_days(rundate) &lt;= 30 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
+    <delete id="deleteRomanticRun" parameterType="java.lang.String">
+        delete from romanticrun where uid=#{uid}
+    </delete>
 </mapper>
 
 

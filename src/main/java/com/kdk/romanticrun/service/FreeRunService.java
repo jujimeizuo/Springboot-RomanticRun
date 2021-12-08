@@ -3,7 +3,6 @@ package com.kdk.romanticrun.service;
 import com.kdk.romanticrun.pojo.FreeRun;
 import com.kdk.romanticrun.service.vo.RunMsgVO;
 
-import java.text.ParseException;
 import java.util.List;
 
 public interface FreeRunService {

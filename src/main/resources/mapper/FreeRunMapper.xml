@@ -7,21 +7,24 @@
         insert into freerun (uid, totalmile, rundate, runtime) values (#{uid}, #{totalMile}, #{runDate}, #{runTime})
     </insert>
 
-    <select id="queryFreeRunByUid" parameterType="com.kdk.romanticrun.pojo.FreeRun" resultType="com.kdk.romanticrun.pojo.FreeRun">
+    <select id="queryFreeRunByUid" parameterType="java.lang.String" resultType="com.kdk.romanticrun.pojo.FreeRun">
         select * from freerun where uid=#{uid}
     </select>
 
-    <select id="queryFreeRunForDay" parameterType="com.kdk.romanticrun.pojo.FreeRun" resultType="com.kdk.romanticrun.pojo.FreeRun">
+    <select id="queryFreeRunForDay" resultType="com.kdk.romanticrun.pojo.FreeRun">
         select * from freerun where to_days(now()) = to_days(rundate)
     </select>
 
-    <select id="queryFreeRunForWeek" parameterType="com.kdk.romanticrun.pojo.FreeRun" resultType="com.kdk.romanticrun.pojo.FreeRun">
+    <select id="queryFreeRunForWeek" resultType="com.kdk.romanticrun.pojo.FreeRun">
         select * from freerun where to_days(now()) - to_days(rundate) &lt;= 7 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
-    <select id="queryFreeRunForMonth" parameterType="com.kdk.romanticrun.pojo.FreeRun" resultType="com.kdk.romanticrun.pojo.FreeRun">
+    <select id="queryFreeRunForMonth" resultType="com.kdk.romanticrun.pojo.FreeRun">
         select * from freerun where to_days(now()) - to_days(rundate) &lt;= 30 AND to_days(now()) - to_days(rundate) >= 0
     </select>
 
+    <delete id="deleteFreeRun" parameterType="java.lang.String">
+        delete from freerun where uid=#{uid}
+    </delete>
 
 </mapper>

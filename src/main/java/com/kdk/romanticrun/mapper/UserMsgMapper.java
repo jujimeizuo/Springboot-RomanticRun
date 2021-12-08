@@ -93,6 +93,12 @@ public interface UserMsgMapper {
      * @return
      */
     float queryRomanticRunTotalMilesByUid(String uid) ;
+
+    /**
+     * 删除 uid用户的UserMsg
+     * @param uid
+     */
+    void deleteUserMsg(String uid) ;
 }
 
 

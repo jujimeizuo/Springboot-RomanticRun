@@ -38,4 +38,10 @@ public interface RomanticRunMapper {
      * @return
      */
     List<RomanticRun> queryRomanticRunForMonth() ;
+
+    /**
+     * 删除 uid用户所有romanticrun
+     * @param uid
+     */
+    void deleteRomanticRun(String uid) ;
 }

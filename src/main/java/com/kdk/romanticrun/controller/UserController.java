@@ -9,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -55,4 +52,9 @@ public class UserController {
         return msg;
     }
 
+    @PostMapping(value = "/{uid}/delete")
+    public String delete(@PathVariable String uid) {
+        userService.deleteUser(uid);
+        return "注销成功";
+    }
 }

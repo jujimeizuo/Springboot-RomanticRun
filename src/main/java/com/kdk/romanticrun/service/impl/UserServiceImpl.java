@@ -1,5 +1,7 @@
 package com.kdk.romanticrun.service.impl;
 
+import com.kdk.romanticrun.mapper.FreeRunMapper;
+import com.kdk.romanticrun.mapper.RomanticRunMapper;
 import com.kdk.romanticrun.mapper.UserMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
 import com.kdk.romanticrun.pojo.User;
@@ -22,6 +24,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMsgMapper userMsgMapper;
+
+    @Autowired
+    private FreeRunMapper freeRunMapper;
+
+    @Autowired
+    private RomanticRunMapper romanticRunMapper;
 
     @Autowired
     private MailService mailService;
@@ -50,7 +58,6 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
     public String login(User user) {
         User user1 = new User();
         user1.setEmail(user.getEmail());
@@ -58,5 +65,12 @@ public class UserServiceImpl implements UserService {
         if(userMapper.isExistUser(user.getEmail()) == null) return "邮箱不存在";
         else if(userMapper.verifyUser(user1) == null) return "密码错误";
         else return user.getUid();
+    }
+
+    public void deleteUser(String uid) {
+        userMapper.deleteUser(uid);
+        userMsgMapper.deleteUserMsg(uid);
+        freeRunMapper.deleteFreeRun(uid);
+        romanticRunMapper.deleteRomanticRun(uid);
     }
 }

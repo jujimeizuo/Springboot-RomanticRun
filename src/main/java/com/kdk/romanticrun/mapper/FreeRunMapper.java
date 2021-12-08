@@ -38,4 +38,10 @@ public interface FreeRunMapper {
      * @return
      */
     List<FreeRun> queryFreeRunForMonth() ;
+
+    /**
+     * 删除 uid 用户的freerun
+     * @param uid
+     */
+    void deleteFreeRun(String uid) ;
 }

@@ -51,11 +51,13 @@
         update usermsg set romanticruntotalmiles=#{RomanticRunTotalMiles} where uid=#{uid}
     </update>
 
-    <select id="queryRomanticRunTotalMilesByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg" resultType="float">
+    <select id="queryRomanticRunTotalMilesByUid" parameterType="java.lang.String" resultType="float">
         select romanticruntotalmiles from usermsg where (uid)=#{uid}
     </select>
 
-
+    <delete id="deleteUserMsg" parameterType="java.lang.String">
+        delete from usermsg where uid=#{uid}
+    </delete>
 </mapper>
 
 

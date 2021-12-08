@@ -5,7 +5,9 @@ import com.kdk.romanticrun.service.vo.UserVO;
 
 public interface UserService{
 
-    public String registerUser(UserVO userVO);
+    String registerUser(UserVO userVO);
 
-    public String login(User user);
+    String login(User user);
+
+    void deleteUser(String uid) ;
 }
