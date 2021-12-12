@@ -58,11 +58,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public String reRegister(String email, String password) {
-        String uid = userMapper.queryUidByEmail(email);
-        password = MD5Util.MD5(password);
-        userMapper.updateUser(uid, password);
-        return uid;
+    public String reRegister(UserVO userVO) {
+        if(!mailService.verityCode(userVO)) return "验证码错误" ;
+        User user = userMapper.queryUidByEmail(userVO.getEmail());
+        String password = MD5Util.MD5(userVO.getPassword());
+        userMapper.updateUser(user.getUid(), password);
+        return user.getUid();
     }
 
     public String login(User user) {
@@ -71,7 +72,9 @@ public class UserServiceImpl implements UserService {
         user1.setPassword(MD5Util.MD5(user.getPassword()));
         if(userMapper.isExistUser(user.getEmail()) == null) return "邮箱不存在";
         else if(userMapper.verifyUser(user1) == null) return "密码错误";
-        else return user.getUid();
+        else {
+            return userMapper.queryUidByEmail(user.getEmail()).getUid();
+        }
     }
 
     public String updateUser(String uid, String password) {

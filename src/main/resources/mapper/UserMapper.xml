@@ -7,8 +7,8 @@
         insert into user (email, password, register_time, uid) values (#{email}, #{password}, #{register_time}, #{uid})
     </insert>
     
-    <select id="queryUidByEmail" parameterType="java.lang.String">
-        select uid from user where email=#{email}
+    <select id="queryUidByEmail" parameterType="com.kdk.romanticrun.pojo.User" resultType="com.kdk.romanticrun.pojo.User">
+        select * from user where email=#{email}
     </select>
     
     <select id="isExistUser" resultType="com.kdk.romanticrun.pojo.User">
@@ -16,7 +16,7 @@
     </select>
 
     <select id="verifyUser" resultType="com.kdk.romanticrun.pojo.User">
-        select * from user where username=#{username} AND password=#{password}
+        select * from user where email=#{email} AND password=#{password}
     </select>
 
     <update id="updateUser" parameterType="com.kdk.romanticrun.pojo.User">

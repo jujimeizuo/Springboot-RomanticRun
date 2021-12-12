@@ -67,7 +67,6 @@ class RomanticRunApplicationTests {
         userMsgMapper.updateFreeRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalFreeRunMiles());
         userMsg.setTotalRomanticRunMiles(0);
         userMsgMapper.updateRomanticRunTotalMilesByUid(userMsg.getUid(), userMsg.getTotalRomanticRunMiles());
-
     }
 
     @Test

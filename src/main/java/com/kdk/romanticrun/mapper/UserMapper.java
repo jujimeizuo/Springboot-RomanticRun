@@ -17,7 +17,7 @@ public interface UserMapper {
      * @param email
      * @return
      */
-    String queryUidByEmail(String email) ;
+    User queryUidByEmail(String email) ;
 
     /**
      * 检测数据库是否已存在用户名

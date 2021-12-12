@@ -45,10 +45,14 @@ public class UserController {
     }
 
     @PostMapping(value = "reRegister")
-    public String reRegister(@RequestParam String email, @RequestParam String password) {
-        String uid = userService.reRegister(email, password);
-        log.info(uid + "更换密码");
-        return uid;
+    public String reRegister(@RequestParam String email, @RequestParam String password, @RequestParam String code) {
+        UserVO userVO = new UserVO();
+        userVO.setEmail(email);
+        userVO.setPassword(password);
+        userVO.setCode(code);
+        String msg = userService.reRegister(userVO);
+        log.info(msg);
+        return msg;
     }
 
     @PostMapping(value = "register")
@@ -68,7 +72,7 @@ public class UserController {
         user.setEmail(email);
         user.setPassword(password);
         String msg = userService.login(user);
-        log.info("msg");
+        log.info(msg);
         return msg;
     }
 

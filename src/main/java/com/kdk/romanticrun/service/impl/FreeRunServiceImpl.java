@@ -61,7 +61,7 @@ public class FreeRunServiceImpl implements FreeRunService {
             if(tempList == null) tempList = new ArrayList<>();
             RunMsgVO runMsgVO = new RunMsgVO();
             UserMsg userMsg = userMsgService.queryTotalUserMsgByUid(freeRun.getUid());
-            // if(userMsg == null) userMsg = new UserMsg();
+             if(userMsg == null) userMsg = new UserMsg();
             runMsgVO.setUsername(userMsg.getUsername() == null ? userMsg.getUid() : userMsg.getUsername());
             runMsgVO.setAvator(userMsg.getAvatar());
             runMsgVO.setTotalMile(freeRun.getTotalMile());
