@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setContent(commentVO.getContent());
         comment.setCommentTime(new Date());
         commentMapper.PublishComment(comment);
-        return "发表评论成功过";
+        return "发表评论成功";
     }
 
 }
