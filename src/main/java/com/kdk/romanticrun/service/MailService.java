@@ -5,7 +5,7 @@ import com.kdk.romanticrun.service.vo.UserVO;
 
 public interface MailService {
 
-    String sendMineMail(String email, boolean flag);
+    String sendMineMail(String email, String flag);
 
     String randomCode();
 

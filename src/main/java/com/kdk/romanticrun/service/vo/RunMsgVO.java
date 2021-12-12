@@ -2,7 +2,6 @@ package com.kdk.romanticrun.service.vo;
 
 import lombok.Data;
 
-
 @Data
 public class RunMsgVO implements Comparable<RunMsgVO> {
 
@@ -15,6 +14,6 @@ public class RunMsgVO implements Comparable<RunMsgVO> {
     public int compareTo(RunMsgVO o) {
         float total1 = this.getTotalMile();
         float total2 = o.getTotalMile();
-        return (int) (total2 - total1) * 100;
+        return (int) (total2 * 100 - total1 * 100);
     }
 }

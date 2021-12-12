@@ -24,8 +24,10 @@ public class UserController {
     @Autowired
     private MailService mailService;
 
+    // flag = 1, 注册
+    // flag = 0, 找回
     @PostMapping(value = "sendEmail")
-    public String sendEmail(@RequestParam String email, @RequestParam boolean flag) {
+    public String sendEmail(@RequestParam String email, @RequestParam String flag) {
         String msg = mailService.sendMineMail(email, flag);
         log.info("给" + email + "发送验证码");
         log.info(msg);

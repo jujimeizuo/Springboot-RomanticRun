@@ -44,7 +44,7 @@ public class FreeRunServiceImpl implements FreeRunService {
 
     // TODO: [username, avator, totalMile]
     /**
-     * 时间排序，传输 list of rank
+     * totalMile排序，传输 list of rank
      * @return
      */
     public List<RunMsgVO> queryFreeRunRank(String flag) {

@@ -35,9 +35,9 @@ public class MailServiceImpl implements MailService {
      * @return
      */
 
-    public String sendMineMail(String email, boolean flag) {
+    public String sendMineMail(String email, String flag) {
         try {
-            if(userMapper.isExistUser(email) != null && flag) return "邮箱已被注册";
+            if(userMapper.isExistUser(email) != null && flag.equals("True")) return "邮箱已被注册";
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             // 生成随机数
             String code = randomCode();
