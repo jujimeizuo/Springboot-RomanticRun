@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DynamicServiceImpl implements DynamicService {
@@ -29,6 +30,7 @@ public class DynamicServiceImpl implements DynamicService {
         dynamic.setIssue(dynamicVO.getIssue());
         dynamic.setCommentNumber(0);
         dynamic.setLikeNumber(0);
+        dynamic.setDid(UUID.randomUUID().toString());
         dynamic.setIssueTime(DateUtil.timeStamp2Date(DateUtil.getNowTimeStamp(), null));
         dynamicMapper.insertDynamic(dynamic);
     }

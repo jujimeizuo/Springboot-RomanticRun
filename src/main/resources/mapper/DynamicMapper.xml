@@ -4,7 +4,7 @@
 <mapper namespace="com.kdk.romanticrun.mapper.DynamicMapper">
 
     <insert id="insertDynamic" parameterType="com.kdk.romanticrun.pojo.Dynamic">
-        insert into dynamic (commentnumber, issue, issuetime, username, likenumber) values (#{commentNumber}, #{issue}, #{issueTime}, #{username}, #{likeNumber})
+        insert into dynamic (did, commentnumber, issue, issuetime, username, likenumber) values (#{did}, #{commentNumber}, #{issue}, #{issueTime}, #{username}, #{likeNumber})
     </insert>
 
     <select id="queryDynamic" resultType="com.kdk.romanticrun.pojo.Dynamic">

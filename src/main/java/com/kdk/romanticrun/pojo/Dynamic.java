@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 @Data
 public class Dynamic implements Comparable<Dynamic> {
 
+    private String did;
     private String username;
     private String issueTime;
     private String issue;
