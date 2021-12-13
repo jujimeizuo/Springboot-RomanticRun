@@ -3,6 +3,8 @@ package com.kdk.romanticrun.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.UserMsgService;
+import com.kdk.romanticrun.service.vo.RunMsgVO;
+import com.kdk.romanticrun.service.vo.RunRecordVO;
 import com.kdk.romanticrun.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +107,19 @@ public class UserMsgController {
     public String insertMedalByUid(@PathVariable String uid, @RequestParam Integer medal) {
         userMsgService.insertMedalByUid(uid, medal);
         return "插入成功";
+    }
+
+    /**
+     * type = 1 : 总记录； type = 2 : 自由跑；type = 3 : 漫跑
+     * @param uid
+     * @param type
+     * @return
+     */
+    @PostMapping(value = "/{uid}/queryRunByUid")
+    public List<RunRecordVO> queryRunByUid(@PathVariable String uid, @RequestParam int type) {
+        List<RunRecordVO> runRecordVOS = userMsgService.queryRunByUid(uid, type);
+        log.info(uid + "用户" + "查询跑步记录");
+        return runRecordVOS;
     }
 
     @GetMapping(value = "/{uid}/queryMedalsByUid")

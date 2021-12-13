@@ -1,14 +1,20 @@
 package com.kdk.romanticrun.service.impl;
 
+import com.kdk.romanticrun.mapper.FreeRunMapper;
+import com.kdk.romanticrun.mapper.RomanticRunMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
+import com.kdk.romanticrun.pojo.FreeRun;
+import com.kdk.romanticrun.pojo.RomanticRun;
 import com.kdk.romanticrun.pojo.UserMsg;
 import com.kdk.romanticrun.service.UserMsgService;
+import com.kdk.romanticrun.service.vo.RunRecordVO;
 import com.kdk.romanticrun.util.CastUtil;
 import com.kdk.romanticrun.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,6 +25,12 @@ public class UserMsgServiceImpl implements UserMsgService {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private FreeRunMapper freeRunMapper;
+
+    @Autowired
+    private RomanticRunMapper romanticRunMapper;
 
     public void insertUseNameByUid(String uid, String username) {
         userMsgMapper.insertUseName(uid, username);
@@ -72,6 +84,37 @@ public class UserMsgServiceImpl implements UserMsgService {
 
     public void insertMedalByUid(String uid, Integer medal) {
         redisUtil.lSet(uid, medal);
+    }
+
+    public List<RunRecordVO> queryRunByUid(String uid, int type) {
+        List<FreeRun> freeRuns = freeRunMapper.queryFreeRunByUid(uid);
+        List<RomanticRun> romanticRuns = romanticRunMapper.queryRomanticRunByUid(uid);
+        List<RunRecordVO> runRecordVOS = new ArrayList<>();
+
+        if(type == 1 || type == 2) {
+            for (FreeRun freeRun : freeRuns) {
+                RunRecordVO runRecordVO = new RunRecordVO();
+                runRecordVO.setType(2);
+                runRecordVO.setRunTime(freeRun.getRunTime());
+                runRecordVO.setTotalMile(freeRun.getTotalMile());
+                runRecordVO.setRunDate(freeRun.getRunDate());
+                runRecordVOS.add(runRecordVO);
+            }
+        }
+
+        if(type == 1 || type == 3) {
+            for (RomanticRun romanticRun : romanticRuns) {
+                RunRecordVO runRecordVO = new RunRecordVO();
+                runRecordVO.setType(3);
+                runRecordVO.setRunTime(romanticRun.getRunTime());
+                runRecordVO.setTotalMile(romanticRun.getTotalMile());
+                runRecordVO.setRunDate(romanticRun.getRunDate());
+                runRecordVOS.add(runRecordVO);
+            }
+        }
+
+        Collections.sort(runRecordVOS);
+        return runRecordVOS;
     }
 
     public List<Integer> queryMedalsByUid(String uid) {

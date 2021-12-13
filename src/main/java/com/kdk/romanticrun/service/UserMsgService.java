@@ -1,6 +1,7 @@
 package com.kdk.romanticrun.service;
 
 import com.kdk.romanticrun.pojo.UserMsg;
+import com.kdk.romanticrun.service.vo.RunRecordVO;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,8 @@ public interface UserMsgService {
     float queryRomanticRunTotalMilesByUid(String uid) ;
 
     void insertMedalByUid(String uid, Integer medal) ;
+
+    List<RunRecordVO> queryRunByUid(String uid, int type) ;
 
     List<Integer> queryMedalsByUid(String uid) ;
 
