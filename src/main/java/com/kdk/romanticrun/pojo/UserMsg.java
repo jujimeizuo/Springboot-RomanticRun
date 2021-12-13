@@ -28,7 +28,7 @@ public class UserMsg {
     private String address;
     private String avatar;
     private String sex;
-    private Date birth;
+    private String birth;
     private String sigNature;
     private float totalFreeRunMiles;
     private float totalRomanticRunMiles;

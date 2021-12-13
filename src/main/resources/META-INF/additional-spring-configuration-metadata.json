@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "image.upload.path.acm",
+      "type": "java.lang.String",
+      "description": "Description for image.upload.path.acm."
+    },
+    {
+      "name": "image.upload.path.tencent",
+      "type": "java.lang.String",
+      "description": "Description for image.upload.path.tencent."
+    },
+    {
+      "name": "image.download.path.acm",
+      "type": "java.lang.String",
+      "description": "Description for image.download.path.acm."
+    },
+    {
+      "name": "image.download.path.tencent",
+      "type": "java.lang.String",
+      "description": "Description for image.download.path.tencent."
+    }
+  ]
+}

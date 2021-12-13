@@ -17,7 +17,7 @@ public interface UserMsgService {
 
     void insertSexByUid(String uid, String sex) ;
 
-    void insertBirthByUid(String uid, Date birth) ;
+    void insertBirthByUid(String uid, String birth) ;
 
     void insertSigNatureByUid(String uid, String sigNature) ;
 

@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -54,7 +53,7 @@ public class UserMsgController {
     }
 
     @GetMapping(value = "/{uid}/insertBirthByUid")
-    public String insertBirthByUid(@PathVariable String uid, @RequestParam Date birth) {
+    public String insertBirthByUid(@PathVariable String uid, @RequestParam String birth) {
         log.info(uid + "更新生日" + birth);
         userMsgService.insertBirthByUid(uid, birth);
         return "更新成功";

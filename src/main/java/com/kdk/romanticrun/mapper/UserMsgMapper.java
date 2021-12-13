@@ -48,7 +48,7 @@ public interface UserMsgMapper {
      * 通过 uid 插入生日日期
      * @param uid
      */
-    void insertBirthByUid(String uid, Date birth) ;
+    void insertBirthByUid(String uid, String birth) ;
 
     /**
      * 通过 uid 设置用户个性签名

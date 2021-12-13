@@ -32,7 +32,7 @@
     </update>
 
     <update id="insertSigNatureByUid" parameterType="com.kdk.romanticrun.pojo.UserMsg">
-        update usermsg set signature#{sigNature} where uid=#{uid}
+        update usermsg set signature=#{sigNature} where uid=#{uid}
     </update>
 
     <select id="queryTotalUserMsgByUid" resultType="com.kdk.romanticrun.pojo.UserMsg">
