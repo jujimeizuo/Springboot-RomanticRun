@@ -22,5 +22,5 @@ public interface CommentMapper {
      * 获取所有评论
      * @return
      */
-    List<Comment> queryAllComment() ;
+    List<Comment> queryAllCommentByCid(String cid) ;
 }

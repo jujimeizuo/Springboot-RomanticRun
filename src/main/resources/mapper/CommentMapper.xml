@@ -5,11 +5,11 @@
 
 
     <insert id="PublishComment" parameterType="com.kdk.romanticrun.pojo.Comment">
-        insert into comment (cid, uid, fuid, content, comment_time) values (#{cid}, #{uid}, #{fuid}, #{content}, #{commentTime})
+        insert into comment (cid, uid, fuid, content, commenttime) values (#{cid}, #{uid}, #{fuid}, #{content}, #{commentTime})
     </insert>
 
-    <select id="queryAllComment" resultType="com.kdk.romanticrun.pojo.Comment">
-        select * from comment
+    <select id="queryAllCommentByCid" resultType="com.kdk.romanticrun.pojo.Comment">
+        select * from comment where cid=#{cid}
     </select>
 
 </mapper>

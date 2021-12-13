@@ -7,6 +7,14 @@
         insert into dynamic (did, commentnumber, issue, issuetime, username, likenumber) values (#{did}, #{commentNumber}, #{issue}, #{issueTime}, #{username}, #{likeNumber})
     </insert>
 
+    <update id="updateLikeNumberByDid">
+        update dynamic set likenumber=likenumber+1 where did=#{did}
+    </update>
+
+    <update id="updateCommentNumberByDid">
+        update dynamic set commentnumber=commentnumber+1 where did=#{did}
+    </update>
+
     <select id="queryDynamic" resultType="com.kdk.romanticrun.pojo.Dynamic">
         select * from dynamic
     </select>

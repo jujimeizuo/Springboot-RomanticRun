@@ -4,13 +4,11 @@ import com.kdk.romanticrun.pojo.Dynamic;
 import com.kdk.romanticrun.pojo.Result;
 import com.kdk.romanticrun.pojo.ResultCode;
 import com.kdk.romanticrun.service.DynamicService;
+import com.kdk.romanticrun.service.vo.DynamicAndCommentVO;
 import com.kdk.romanticrun.service.vo.DynamicVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,11 +28,11 @@ public class DynamicController {
         return r;
     }
 
-    @PostMapping(value = "queryDynamic")
-    public List<Dynamic> queryDynamic() {
-        List<Dynamic> dynamics = dynamicService.queryDynamic();
+    @GetMapping(value = "queryDynamic")
+    public List<DynamicAndCommentVO> queryDynamic() {
+        List<DynamicAndCommentVO> dynamicAndCommentVOS = dynamicService.queryDynamic();
         log.info("查询动态");
-        return dynamics;
+        return dynamicAndCommentVOS;
     }
 
 }

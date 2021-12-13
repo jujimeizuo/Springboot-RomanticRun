@@ -4,24 +4,17 @@ import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-/**
- * @Author: fengzetao
- * @Date: 2021/12/12 7:51 下午
- */
 @Data
-public class Comment implements Comparable<Comment> {
+public class CommentWithDynamic implements Comparable<CommentWithDynamic>{
 
-    private String cid;
-    private String uid;
-    private String fuid;
+    private String username;
     private String content;
     private String commentTime;
 
     @SneakyThrows
     @Override
-    public int compareTo(Comment o) {
+    public int compareTo(CommentWithDynamic o) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String date1 = this.getCommentTime();
         String date2 = o.getCommentTime();

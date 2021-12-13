@@ -14,6 +14,9 @@ public interface DynamicMapper {
      */
     void insertDynamic(Dynamic dynamic) ;
 
+    void updateLikeNumberByDid(String did);
+
+    void updateCommentNumberByDid(String did) ;
 
     List<Dynamic> queryDynamic() ;
 
