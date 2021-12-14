@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class DynamicVO {
     private String uid;
-    private List<HashMap<String, String>> pics;
+    private List<String> pics;
     private String issue;
 }

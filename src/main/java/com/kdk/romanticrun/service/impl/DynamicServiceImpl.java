@@ -14,6 +14,7 @@ import com.kdk.romanticrun.service.vo.DynamicAndCommentVO;
 import com.kdk.romanticrun.service.vo.DynamicVO;
 import com.kdk.romanticrun.util.DateUtil;
 import com.kdk.romanticrun.util.JsonUtil;
+import com.kdk.romanticrun.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,11 +41,7 @@ public class DynamicServiceImpl implements DynamicService {
         dynamic.setCommentNumber(0);
         dynamic.setLikeNumber(0);
         dynamic.setAvator(userMsg.getAvatar());
-
-        // TODO: 需要json序列化
-        dynamic.setPics(JsonUtil.object2Json(dynamicVO.getPics()));
-
-
+        dynamic.setPics(StringUtil.listToString(dynamicVO.getPics()));
         dynamic.setDid(UUID.randomUUID().toString());
         dynamic.setIssueTime(DateUtil.timeStamp2Date(DateUtil.getNowTimeStamp(), null));
         dynamicMapper.insertDynamic(dynamic);
@@ -78,9 +75,7 @@ public class DynamicServiceImpl implements DynamicService {
             dcVO.setCommentWithDynamics(cds);
             dcVO.setAvator(dynamic.getAvator());
 
-            // TODO : 需要json序列化
-            List<HashMap<String, String>> hashMaps = JsonUtil.json2Object(dynamic.getPics(), new TypeReference<List<HashMap<String, String>>>() {});
-            dcVO.setPics(hashMaps);
+            dcVO.setPics(StringUtil.stringToList(dynamic.getPics()));
 
             dcVOS.add(dcVO);
         }

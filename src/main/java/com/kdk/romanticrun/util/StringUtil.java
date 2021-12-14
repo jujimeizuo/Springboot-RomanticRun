@@ -1,5 +1,9 @@
 package com.kdk.romanticrun.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * StringUtil
  * @description: 字符串工具类
@@ -22,5 +26,32 @@ public class StringUtil {
      */
     public static boolean isNotEmpty(String str){
         return !isEmpty(str);
+    }
+
+    public static String listToString(List<String> list){
+
+        if(list==null){
+            return null;
+        }
+
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+
+        //第一个前面不拼接","
+        for(String string :list) {
+            if(first) {
+                first=false;
+            }else{
+                result.append(",");
+            }
+            result.append(string);
+        }
+        return result.toString();
+    }
+
+    public static List<String> stringToList(String strs){
+        if(strs == null) return null;
+        String[] str = strs.split(",");
+        return Arrays.asList(str);
     }
 }

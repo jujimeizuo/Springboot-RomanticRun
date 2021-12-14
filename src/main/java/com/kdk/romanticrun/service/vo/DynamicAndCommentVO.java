@@ -22,7 +22,7 @@ public class DynamicAndCommentVO implements Comparable<DynamicAndCommentVO> {
     private String issue;
     private Integer commentNumber;
     private Integer likeNumber;
-    private List<HashMap<String, String>> pics;
+    private List<String> pics;
 
     /**
      * 动态下的评论
