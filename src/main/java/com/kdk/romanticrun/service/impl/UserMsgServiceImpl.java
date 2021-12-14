@@ -33,7 +33,7 @@ public class UserMsgServiceImpl implements UserMsgService {
     private RomanticRunMapper romanticRunMapper;
 
     public void insertUseNameByUid(String uid, String username) {
-        userMsgMapper.insertUseName(uid, username);
+        userMsgMapper.insertUserNameByUid(uid, username);
     }
 
     public void insertPhoneByUid(String uid, String phone) {
