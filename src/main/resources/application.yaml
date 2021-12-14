@@ -64,7 +64,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
-# token: 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
 image:
   upload:
     path:
