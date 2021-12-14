@@ -1,5 +1,6 @@
 package com.kdk.romanticrun.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kdk.romanticrun.pojo.Dynamic;
 import com.kdk.romanticrun.pojo.Result;
 import com.kdk.romanticrun.pojo.ResultCode;
@@ -20,7 +21,7 @@ public class DynamicController {
     private DynamicService dynamicService;
 
     @PostMapping(value = "insertDynamic")
-    public Result insertDynamic(@RequestBody DynamicVO dynamicVO) {
+    public Result insertDynamic(@RequestBody DynamicVO dynamicVO) throws JsonProcessingException {
         dynamicService.insertDynamic(dynamicVO);
         Result r = new Result();
         r.code(ResultCode.SUCCESS).message("发布成功").data(null);

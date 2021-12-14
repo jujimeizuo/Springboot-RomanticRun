@@ -13,11 +13,14 @@ public class DynamicAndCommentVO implements Comparable<DynamicAndCommentVO> {
     /**
      * 广场动态
      */
+    private String did;
+    private String uid;
     private String username;
     private String issueTime;
     private String issue;
     private Integer commentNumber;
     private Integer likeNumber;
+    private List<String> pics;
 
     /**
      * 动态下的评论

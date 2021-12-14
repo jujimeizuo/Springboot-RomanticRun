@@ -4,16 +4,19 @@ import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Data
 public class Dynamic implements Comparable<Dynamic> {
 
     private String did;
+    private String fuid;
     private String username;
     private String issueTime;
     private String issue;
     private Integer commentNumber;
     private Integer likeNumber;
+    private String pics;
 
     @SneakyThrows
     @Override

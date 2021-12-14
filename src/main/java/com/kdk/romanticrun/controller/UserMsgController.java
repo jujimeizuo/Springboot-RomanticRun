@@ -71,7 +71,7 @@ public class UserMsgController {
     @PostMapping(value = "/{uid}/queryTotalUserMsgByUid")
     public UserMsg queryTotalUserMsgByUid(@PathVariable String uid) throws JsonProcessingException {
         UserMsg userMsg = userMsgService.queryTotalUserMsgByUid(uid);
-        log.info(uid + "的总信息为: " + JsonUtil.objectToString(userMsg));
+        log.info(uid + "的总信息为: " + JsonUtil.object2Json(userMsg));
         return userMsg;
     }
 
@@ -125,7 +125,7 @@ public class UserMsgController {
     @GetMapping(value = "/{uid}/queryMedalsByUid")
     List<Integer> queryMedalsByUid(@PathVariable String uid) throws JsonProcessingException {
         List<Integer> list = userMsgService.queryMedalsByUid(uid);
-        log.info(uid + "的总徽章有: " + JsonUtil.objectToString(list));
+        log.info(uid + "的总徽章有: " + JsonUtil.object2Json(list));
         return list;
     }
 
