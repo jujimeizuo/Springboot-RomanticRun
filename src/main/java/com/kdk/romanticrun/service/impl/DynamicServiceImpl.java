@@ -77,8 +77,8 @@ public class DynamicServiceImpl implements DynamicService {
             dcVO.setIssueTime(dynamic.getIssueTime());
             dcVO.setCommentWithDynamics(cds);
             dcVO.setAvator(dynamic.getAvator());
-            // TODO : 需要json序列化
 
+            // TODO : 需要json序列化
             List<HashMap<String, String>> hashMaps = JsonUtil.json2Object(dynamic.getPics(), new TypeReference<List<HashMap<String, String>>>() {});
             dcVO.setPics(hashMaps);
 
@@ -86,5 +86,9 @@ public class DynamicServiceImpl implements DynamicService {
         }
         Collections.sort(dcVOS);
         return dcVOS;
+    }
+
+    public void updateLikeNumberByDid(String did) {
+        dynamicMapper.updateLikeNumberByDid(did);
     }
 }

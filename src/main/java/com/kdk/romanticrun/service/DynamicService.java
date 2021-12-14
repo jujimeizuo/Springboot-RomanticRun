@@ -13,4 +13,6 @@ public interface DynamicService {
     void insertDynamic(DynamicVO dynamicVO) throws JsonProcessingException;
 
     List<DynamicAndCommentVO> queryDynamic() ;
+
+    void updateLikeNumberByDid(String did);
 }

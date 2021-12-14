@@ -36,4 +36,12 @@ public class DynamicController {
         return dynamicAndCommentVOS;
     }
 
+    @PostMapping(value = "/{did}/updateLikeNumberByDid")
+    public Result updateLikeNumberByDid(@PathVariable String did) {
+        dynamicService.updateLikeNumberByDid(did);
+        Result r = new Result();
+        r.code(ResultCode.SUCCESS).message("点赞成功").data(null);
+        log.info(r.toString());
+        return r;
+    }
 }
