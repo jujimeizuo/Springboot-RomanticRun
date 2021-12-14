@@ -1,6 +1,7 @@
 package com.kdk.romanticrun.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.kdk.romanticrun.mapper.CommentMapper;
 import com.kdk.romanticrun.mapper.DynamicMapper;
 import com.kdk.romanticrun.mapper.UserMsgMapper;
@@ -38,9 +39,10 @@ public class DynamicServiceImpl implements DynamicService {
         dynamic.setIssue(dynamicVO.getIssue());
         dynamic.setCommentNumber(0);
         dynamic.setLikeNumber(0);
+        dynamic.setAvator(userMsg.getAvatar());
 
         // TODO: 需要json序列化
-        dynamic.setPics(JsonUtil.object2Json(dynamicVO.getPic()));
+        dynamic.setPics(JsonUtil.object2Json(dynamicVO.getPics()));
 
 
         dynamic.setDid(UUID.randomUUID().toString());
@@ -58,24 +60,27 @@ public class DynamicServiceImpl implements DynamicService {
             ArrayList<CommentWithDynamic> cds = new ArrayList<>();
             for (Comment comment : comments) {
                 CommentWithDynamic cd = new CommentWithDynamic();
-                cd.setUsername(userMsgMapper.queryTotalUserMsgByUid(comment.getUid()).getUsername());
+                UserMsg userMsg = userMsgMapper.queryTotalUserMsgByUid(comment.getUid());
+                cd.setUsername(userMsg.getUsername());
+                cd.setAvator(userMsg.getAvatar());
                 cd.setCommentTime(comment.getCommentTime());
                 cd.setContent(comment.getContent());
                 cds.add(cd);
             }
             Collections.sort(cds);
             dcVO.setDid(dynamic.getDid());
-
+            dcVO.setUid(dynamic.getFuid());
             dcVO.setUsername(dynamic.getUsername());
             dcVO.setCommentNumber(dynamic.getCommentNumber());
             dcVO.setLikeNumber(dynamic.getLikeNumber());
             dcVO.setIssue(dynamic.getIssue());
             dcVO.setIssueTime(dynamic.getIssueTime());
             dcVO.setCommentWithDynamics(cds);
-
+            dcVO.setAvator(dynamic.getAvator());
             // TODO : 需要json序列化
-            ArrayList<String> strings = new ArrayList<>();
-            // dcVO.setPics(JsonUtil.json2Object(dynamic.getPics(), strings);
+
+            List<HashMap<String, String>> hashMaps = JsonUtil.json2Object(dynamic.getPics(), new TypeReference<List<HashMap<String, String>>>() {});
+            dcVO.setPics(hashMaps);
 
             dcVOS.add(dcVO);
         }

@@ -11,6 +11,7 @@ public class CommentWithDynamic implements Comparable<CommentWithDynamic>{
     private String username;
     private String content;
     private String commentTime;
+    private String avator;
 
     @SneakyThrows
     @Override

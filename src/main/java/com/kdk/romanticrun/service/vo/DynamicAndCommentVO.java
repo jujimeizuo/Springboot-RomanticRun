@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -16,11 +17,12 @@ public class DynamicAndCommentVO implements Comparable<DynamicAndCommentVO> {
     private String did;
     private String uid;
     private String username;
+    private String avator;
     private String issueTime;
     private String issue;
     private Integer commentNumber;
     private Integer likeNumber;
-    private List<String> pics;
+    private List<HashMap<String, String>> pics;
 
     /**
      * 动态下的评论

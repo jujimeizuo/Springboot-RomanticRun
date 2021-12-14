@@ -12,6 +12,7 @@ public class Dynamic implements Comparable<Dynamic> {
     private String did;
     private String fuid;
     private String username;
+    private String avator;
     private String issueTime;
     private String issue;
     private Integer commentNumber;
