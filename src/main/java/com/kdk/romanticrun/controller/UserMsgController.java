@@ -42,7 +42,7 @@ public class UserMsgController {
 
     @GetMapping(value = "/{uid}/insertAvatorByUid")
     public String insertAvatorByUid(@PathVariable String uid, @RequestParam String avator) {
-        log.info(uid + "更新头像" + avator);
+        log.info(uid + "更新头像");
         userMsgService.insertAvatorByUid(uid, avator);
         return "更新成功";
     }
@@ -71,7 +71,7 @@ public class UserMsgController {
     @PostMapping(value = "/{uid}/queryTotalUserMsgByUid")
     public UserMsg queryTotalUserMsgByUid(@PathVariable String uid) throws JsonProcessingException {
         UserMsg userMsg = userMsgService.queryTotalUserMsgByUid(uid);
-        log.info(uid + "的总信息为: " + JsonUtil.object2Json(userMsg));
+        log.info(uid + "的总信息为: ");
         return userMsg;
     }
 

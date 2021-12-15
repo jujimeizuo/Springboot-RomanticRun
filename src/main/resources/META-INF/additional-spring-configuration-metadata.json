@@ -19,6 +19,11 @@
       "name": "image.download.path.tencent",
       "type": "java.lang.String",
       "description": "Description for image.download.path.tencent."
+    },
+    {
+      "name": "spring.tomcat.max-http-post-size",
+      "type": "java.lang.String",
+      "description": "Description for spring.tomcat.max-http-post-size."
     }
   ]
 }
