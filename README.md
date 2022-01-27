@@ -1,6 +1,6 @@
 
 <p align="center">
-	<strong>一个基于springboot的漫跑app</strong>
+	<strong>基于springboot的漫跑app</strong>
 </p>
 
 
